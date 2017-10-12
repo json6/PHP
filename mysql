@@ -1,0 +1,146 @@
+<?php
+	header("Content-type:text/html;charset=utf-8");
+	$_SESSION['mysqli'] = mysqli_connect('localhost','root','','shopping');//连接数据库
+	// mysql_query($_SESSION['mysqli'],'set names utf8');
+	if(mysqli_connect_errno($_SESSION['mysqli'])){
+		echo '连接失败：'.mysqli_connect_errno();
+	}else{
+		echo "连接成功！";
+		// $cd = getList('info','cid=6');
+		// var_dump($cd);
+		// $data['name'] = $_POST['title'];
+		// $data['content'] = $_POST['con'];
+		// $data['cid'] = $_POST['id'];
+		// $del = del('info','cid=3');
+		// var_dump($del);
+		// $data['name'] = $_POST['title'];
+		// $data['content'] = $_POST['con'];
+		// $data['cid'] = $_POST['id'];
+			// $up = update('info',$data,'id=30');
+			// var_dump($up);
+		$data['name'] = $_POST['title'];
+		$data['content'] = $_POST['con'];
+		$data['cid'] = $_POST['id'];
+		$res = add('info',$data);
+		var_dump($res);
+	}
+	/****
+		封装函数
+	*/
+	//封装连接数据库的函数
+	function con($name,$psd,$db,$host='localhost',$code='utf8'){
+		$_SESSION['']=mysql_connect($host,$name,$psd,$db) or die('连接数据库失败');
+	mysqli_query($_SESSION['mysqli'],'set names '.$code);
+	}
+	
+	//查询数据
+	function getList($table,$where='',$order='',$limit='',$field='*'){
+		$sql = "select $field from $table";
+		if($where!=''){
+				$sql.=" where $where";
+		}
+		if($order!=''){
+			$sql.=" order by $order";
+		}
+		if($limit!=''){
+			$sql.=" limit $limit";
+		}
+		$result = mysqli_query($_SESSION['mysqli'],$sql);
+		if(!$result || $result->num_rows==0){
+			return false;
+		}
+		while($row = mysqli_fetch_assoc($result)){
+			$data[]=$row;
+		}
+		return $data;
+	}
+	//增加
+	
+		// $data['name'] = $_POST['title'];
+		// $data['content'] = $_POST['con'];
+		// $data['cid'] = $_POST['id'];
+		// $res = add('info',$data);
+		//$rec = add('info',$data);
+		function add($table,$data){
+			$feild = '';
+			$values = '';
+			if(!is_array($data)){
+				return false;
+			}
+			foreach($data as $key=>$value){
+				$feild.=$key.',';
+				$values.="'".$value."',";
+			}
+			$feild=rtrim($feild,',');
+			$values=rtrim($values,",");
+			$sql="insert into $table ($feild) values ($values)";
+			$result=mysqli_query($_SESSION['mysqli'],$sql);
+			//var_dump($result);
+			if($result){
+				return mysqli_insert_id($_SESSION['mysqli']);
+				echo '增加数据成功！';
+				//var_dump($res);
+			}else{
+				return false;
+			}
+		}
+	//修改
+		
+	function update($table,$data,$where){
+		$set= '';
+		if(!is_array($data)){
+			return false;
+		}
+		foreach($data as $key => $value){
+			$set.=$key."='".$value."',";
+		}
+		$set=rtrim($set,',');
+		$sql = "update $table set $set where $where";
+		return mysqli_query($_SESSION['mysqli'],$sql);
+	}
+	//删除
+	function del($table,$where){
+		$sql ="delete from $table where $where";
+		return mysqli_query($_SESSION['mysqli'],$sql);
+		echo '删除成功!';
+	}
+	// $con = mysqli_connect('localhost','root','','shopping');
+	// if(!$con){
+		// echo "连接失败";
+	// }else{
+		// echo "连接成功";
+		
+		// $data['name'] = $_POST['title'];
+		// $data['content'] = $_POST['con'];
+		
+		// $data1 = $_POST['title'];
+		// $data2 = $_POST['con'];
+		// $data3 = $_POST['id'];
+		
+		
+		// echo $sql = "insert into info(id,name,content,cid) value(null,'$data1','$data2','$data3')";
+		// $res = mysqli_query($con,$sql);
+		// if($res || $res['num_rows']>0){
+			// echo "chengong";
+		// }
+		// mysqli_close($con);
+		//查询数据
+		// $sql = "select cid from info where cid=2";
+		// $res = mysqli_query($con,$sql); 
+		// var_dump(mysqli_fetch_assoc($res));
+		// mysqli_close($con);
+		//更新数据
+		// echo $sql = "update info set cid=4 where cid=2";
+		// $res = mysqli_query($con,$sql);
+		// if($res)
+		// {
+			// echo "更新成功！";
+		// }
+	
+		//删除
+		// echo $sql = "delete from info where cid=4";
+		// $res = mysqli_query($con,$sql);
+		// if($res){
+			// echo "删除成功！";
+			// }
+?>
