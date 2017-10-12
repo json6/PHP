@@ -1,0 +1,84 @@
+<?php
+	// 1.定义一个数组$arr = array(),分别给该数组赋5个值，用循环显示数组元素的值
+		$arr = array(1,2,3,4,5);			
+	//获取数组的长度count
+		$arrlenght = count($arr);
+		echo "1.用循环显示数组元素的值<hr>";
+		for($i=0;$i<$arrlenght;$i++){
+			echo $arr[$i];
+			echo "<br>";
+		}
+		echo "<hr>";
+	//2.现在有一个数组$arr=array(8,9,6,5,4),求数组元素的和
+		echo "2.数组元素的和";
+		echo "<br>";
+		$arrl = array(8,9,6,6,4);
+		echo array_sum($arrl);
+		echo "<br>";
+	//3.定义一个数组$arr=array()，数组中依次存放了65 到 90这些数字，
+	//通过数组例用循环输出A到Z每一个字母
+		echo "<hr>";
+		echo "3.通过数组例用循环输出A到Z每一个字母<br>";
+		$array = array();
+		for($i=65;$i<=90;$i++){
+			$array=$i;
+			$j = chr($i);
+			echo ($array).($j)."&nbsp;";
+		}
+	//4.将一串英文字母存放于数组中，输出数组中每个字母所对应的ASCII码
+	//ord  为转换ASCII的关键字
+		echo "<hr>";
+		echo "4.每个字母所对应的ASCII码:&nbsp;&nbsp;";
+		$arrl = array('e','D','c','B','a');
+		$arlylenght = count($arrl);
+		for($i=0;$i<$arlylenght;$i++){
+			echo ord($arrl[$i])."&nbsp;";
+		}
+		echo "<br>";
+	//5.将一串英文字母存放于数组中，计算数组中英文字母的元音个数
+		echo "<hr>";
+		echo "5.计算数组中英文字母的元音个数<br>";
+		$arr = array("aeioulllllllllllllllllllllllllllllllllllllll");
+		$aaa = $arr[0];
+		$yy = 0;
+		$j = strlen($aaa);
+		for($i=0;$i<$j;$i++){
+			if(strstr('aeiouAEIOU',$aaa[$i])){
+				$yy++;
+			}
+		}
+		echo $yy;
+		
+		//print_r ($arr);
+	//6.编写一个程序，将以下数字存放数组中，然后找出数字67所在的位置(既67对应的数组下标)
+	//array_search(元素,数组); 整体为下标
+		echo "<hr>";
+		echo "6.元素所对应的数组下标<br>";
+		$t = array(32,22,64,67);
+		echo array_search(64,$t);
+	//7.编写一个程序，将以下数字存放数组中，然后找出该数组中的最大值与最小值并输出
+		echo "<hr>";
+		echo "7.最大值与最小值<br>"; 
+		$arrlr = array(34,45,56,67,89,12);
+		echo max($arrlr)."&nbsp;为最大值";
+		echo "<br>";
+		echo min($arrlr)."&nbsp;为最小值";
+		echo "<hr>";
+	//8.编写一个程序，将以下数字存放数组中，然后将该数组倒置(既数组中所有元素前后倒置)
+	//array_reverse 为倒序
+		echo "8.元素前后倒置<br>";
+		$array = array(34,45,56,67,89);
+		print_r (array_reverse($array));
+		echo "<hr>";
+	//9.编写一个程序，将以下数字存放数组中，然后将该数组元素由小到大排序
+	//sort 为升序    rsort 为降序
+		echo "9.由小到大排序<br>";
+		$array = array(44,34,22,75,66);
+		sort($array);
+		$arrlength=count($array);
+		for($x=0;$x<$arrlength;$x++)
+		{
+			echo $array[$x];
+			echo "<br>";
+		}
+?>
