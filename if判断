@@ -1,0 +1,12 @@
+<?php
+	$a = 5;
+	echo "大家好";
+	$c = $a;
+	echo $c;
+	$a = false;
+	if($a){
+		echo "条件为真";
+	}else{
+		echo "条件为假";
+	}
+?>
