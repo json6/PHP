@@ -1,0 +1,10 @@
+<?php
+	echo "Hello php";
+	echo time();
+	echo date('Y');
+	//地址
+	echo date_default_timezone_get();
+	//时间
+	echo date('Y-m-d H:i:s');
+	
+?>
