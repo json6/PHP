@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	</head>
+	<body>
+		<div>
+			<form action="add.php" method="post">
+				<div>
+					添加数据的页面
+				</div>
+				<div>
+					<div>
+					<label>ID:</label>
+					</div>
+					<div>
+					<input type="text" name="id"></input>
+					</div>
+				<div>
+				<div>
+					<div>
+					<label>标题：</label>
+					</div>
+					<div>
+					<input type="text" name="name"></input>
+					</div>
+				</div>
+				<div>
+					<div>
+					<label>内容：</label>
+					</div>
+					<div>
+					<textarea rows="5" cols="50" name="con"></textarea>
+					</div>
+				</div>
+				<div>
+					<input type="submit" value="提交">
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
