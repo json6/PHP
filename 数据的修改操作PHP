@@ -1,0 +1,29 @@
+<?php
+	header("Content-type: text/html; charset=utf-8");
+	include_once('moder.php');
+	con('root','','shopping');
+	//数据库的id
+	if(!empty($_GET['id'])){
+		$id = $_GET['id'];
+		$res = getOne('info','id='.$id);
+		// var_dump($res);
+		include_once('update'.'.html');
+	}
+	if($_POST){
+		$id = $_POST['id'];
+		$data['name'] = $_POST['name'];
+		$data['content'] = $_POST['con'];
+		$data['cid'] = $_POST['cid'];
+		// var_dump($id);
+		// var_dump($data);
+		$res = update('info',$data,'id='.$id);
+		// var_dump($res);
+		if($res){
+			echo "数据修改成功！";
+			include_once('mysql'.'.php');
+		}else{
+			echo "数据修改失败！";
+		}
+	}
+	
+?>
