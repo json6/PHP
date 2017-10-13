@@ -1,0 +1,15 @@
+<?php
+	header("Content-type: text/html; charset=utf-8");
+	include_once('moder.php');
+	con('root','','shopping');
+	if(!empty($_GET['id'])){
+		$id = $_GET['id'];
+		$res = del('info','id='.$id);
+		if($res){
+			echo "删除成功！<br>";
+			include_once('mysql.php');
+		}else{
+			echo "删除失败！";
+		}
+	}
+?>
