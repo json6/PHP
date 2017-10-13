@@ -1,0 +1,12 @@
+<?php
+	include_once('moder.php');
+	con('root','','shopping');
+	$res = getList('info','cid');
+	if($res){
+		echo "查询成功！";
+		// var_dump($res);
+		include_once('mysql'.'.html');
+	}else{
+		echo "查询失败！";
+	}
+?>
