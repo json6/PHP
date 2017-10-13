@@ -1,0 +1,20 @@
+<?php
+	//增加数据
+	header("Content-type: text/html; charset=utf-8");
+	include_once('moder.php');
+	con('root','','shopping');
+	include_once('add'.'.html');
+	$data['name'] = $_POST['name'];
+	$data['cid'] = $_POST['id'];
+	$data['content'] = $_POST['con'];
+	// for($i=1;$i<100;$i++){
+		$res = add('info',$data);
+	// }
+	if($res){
+		echo "数据添加成功！";
+	}else{
+		echo "数据添加失败！";
+	}
+	echo "<hr>";
+	include_once('mysql'.'.php');
+?>
